@@ -1500,15 +1500,33 @@
       if (!session.admin) return toast("Debes entrar como administrador");
       try {
         if (db) await refreshLatestState();
+        let deleted = 0;
+        let saved = 0;
+        let partial = 0;
         document.querySelectorAll('[data-score^="result-home-"]').forEach(input => {
           const id = input.dataset.score.replace("result-home-", "");
           const away = document.querySelector(`[data-score="result-away-${id}"]`);
-          if (input.value === "" || away.value === "") return;
+          const homeValue = input.value.trim();
+          const awayValue = away.value.trim();
+          if (homeValue === "" && awayValue === "") {
+            if (state.results[id]) deleted += 1;
+            pendingResultIds.add(id);
+            delete state.results[id];
+            return;
+          }
+          if (homeValue === "" || awayValue === "") {
+            partial += 1;
+            return;
+          }
           pendingResultIds.add(id);
-          state.results[id] = { home: Number(input.value), away: Number(away.value) };
+          state.results[id] = { home: Number(homeValue), away: Number(awayValue) };
+          saved += 1;
         });
         await persist();
         renderAll();
+        if (partial) return toast("Algunos marcadores quedaron incompletos y no se guardaron");
+        if (deleted && saved) return toast("Marcadores actualizados y borrados");
+        if (deleted) return toast("Marcadores finales borrados");
         toast("Marcadores finales guardados");
       } catch (error) {
         console.error(error);
