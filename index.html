@@ -147,17 +147,15 @@
     main { padding: 28px; background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.62)); }
     .topbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       gap: 18px;
       align-items: flex-start;
+      width: 100%;
       margin-bottom: 18px;
-      padding: 24px;
-      border-radius: 12px;
-      background:
-        linear-gradient(105deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.95) 54%, rgba(0, 59, 120, .14) 100%),
-        radial-gradient(circle at 94% 8%, rgba(255, 210, 31, .38), transparent 20%);
-      border: 2px solid rgba(255, 210, 31, .75);
-      box-shadow: var(--shadow);
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
     }
     h1 { margin: 0 0 6px; font-size: clamp(26px, 4vw, 42px); letter-spacing: 0; }
     h2 { margin: 0; font-size: 22px; }
@@ -168,14 +166,17 @@
     .topbar p { opacity: .86; }
     .status-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(130px, 1fr));
-      gap: 10px;
-      min-width: 420px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      width: min(100%, 840px);
+      min-width: 0;
+      margin: 0 auto;
     }
     .stat {
       background: #ffffff;
       border: 2px solid rgba(255, 210, 31, .70);
       border-radius: 8px;
+      min-height: 88px;
       padding: 12px;
       box-shadow: var(--shadow);
     }
@@ -444,8 +445,8 @@
       .app { grid-template-columns: 1fr; }
       aside { position: static; height: auto; border-right: 0; border-bottom: 4px solid var(--gold); }
       main { padding: 18px; }
-      .topbar { display: grid; }
-      .status-grid { min-width: 0; grid-template-columns: repeat(3, 1fr); }
+      .topbar { display: flex; justify-content: center; }
+      .status-grid { width: 100%; min-width: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .toolbar { grid-template-columns: 1fr 1fr; }
       .match { grid-template-columns: 1fr; }
       .admin-grid { grid-template-columns: 1fr; }
@@ -495,10 +496,6 @@
 
     <main>
       <div class="topbar">
-        <div>
-          <h1>POLLA FUTBOLERA</h1>
-          <p>Predicciones por jornada, resultados oficiales y tabla de puntajes.</p>
-        </div>
         <div class="status-grid">
           <div class="stat"><b id="statUsers">-</b><span id="statUsersLabel">Jornada actual</span></div>
           <div class="stat"><b id="statMatches">0</b><span id="statMatchesLabel">Partidos en juego</span></div>
