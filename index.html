@@ -3,29 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Polla Mundialista 2026</title>
+  <title>POLLA FUTBOLERA</title>
   <!-- Version Vercel: incluye vista admin "Predicciones por jornada" -->
   <style>
     :root {
-      --bg: #f7f6f1;
-      --panel: #ffffff;
-      --ink: #151718;
-      --muted: #606866;
-      --line: #dedbd1;
-      --green: #a8f000;
-      --blue: #7a00ff;
-      --red: #e00000;
-      --gold: #d6a63f;
-      --black: #08090a;
-      --purple: #7a00ff;
-      --shadow: 0 14px 34px rgba(8, 9, 10, .12);
+      --bg: #050505;
+      --panel: #fffaf0;
+      --ink: #14110a;
+      --muted: #6b6252;
+      --line: #dfc769;
+      --green: #f5c400;
+      --blue: #111111;
+      --red: #c62828;
+      --gold: #ffcc00;
+      --cyan: #ffe57a;
+      --black: #050505;
+      --purple: #ffcc00;
+      --shadow: 0 20px 44px rgba(0, 0, 0, .34);
     }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(255, 204, 0, .34), transparent 28%),
+        radial-gradient(circle at 92% 0%, rgba(255, 229, 122, .22), transparent 24%),
+        linear-gradient(145deg, #050505 0%, #171308 48%, #050505 100%);
       color: var(--ink);
     }
     button, input, select { font: inherit; }
@@ -38,18 +42,22 @@
       padding: 0 12px;
       cursor: pointer;
     }
-    button.primary { background: #2e8f3f; border-color: #2e8f3f; color: white; }
-    button.blue { background: var(--black); border-color: var(--black); color: white; }
+    button.primary { background: linear-gradient(90deg, #ffcc00, #f0a900); border-color: #ffcc00; color: #090909; font-weight: 900; box-shadow: inset 0 -3px 0 rgba(0,0,0,.18); }
+    button.blue { background: linear-gradient(90deg, #111111, #2a2209); border-color: #ffcc00; color: #ffcc00; font-weight: 900; }
     button.danger { background: var(--red); border-color: var(--red); color: white; }
     button:disabled { opacity: .55; cursor: not-allowed; }
     input, select {
       border: 1px solid var(--line);
       border-radius: 6px;
-      background: white;
+      background: #ffffff;
       color: var(--ink);
       min-height: 38px;
       padding: 8px 10px;
       width: 100%;
+    }
+    input:focus, select:focus {
+      outline: 2px solid rgba(255, 210, 31, .65);
+      border-color: var(--gold);
     }
     .app {
       min-height: 100vh;
@@ -77,13 +85,15 @@
     }
     aside {
       background:
-        radial-gradient(circle at 90% 8%, rgba(168, 240, 0, .34), transparent 24%),
-        linear-gradient(150deg, #08090a 0%, #151718 48%, #4b007d 100%);
+        radial-gradient(circle at 8% 4%, rgba(255, 204, 0, .34), transparent 28%),
+        radial-gradient(circle at 95% 96%, rgba(255, 204, 0, .20), transparent 28%),
+        linear-gradient(165deg, #050505 0%, #16120a 56%, #050505 100%);
       color: white;
       padding: 22px;
       position: sticky;
       top: 0;
       height: 100vh;
+      border-right: 4px solid var(--gold);
     }
     .brand {
       display: flex;
@@ -96,20 +106,21 @@
     }
     .ball {
       display: block;
-      width: 118px;
-      height: 64px;
-      border-radius: 6px;
-      background: #08090a;
+      width: 96px;
+      height: 96px;
+      border-radius: 18px;
+      background: #ffffff;
       flex: 0 0 auto;
-      box-shadow: 0 10px 20px rgba(0,0,0,.24);
+      box-shadow: 0 12px 28px rgba(0,0,0,.38);
       overflow: hidden;
+      border: 2px solid rgba(255, 204, 0, .95);
     }
     .ball img {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      background: #08090a;
+      object-fit: cover;
+      background: #ffffff;
     }
     .session {
       border: 1px solid rgba(255,255,255,.16);
@@ -132,26 +143,29 @@
       background: transparent;
       color: rgba(255,255,255,.82);
     }
-    .nav-btn.active { background: #2e8f3f; color: white; }
-    main { padding: 28px; }
+    .nav-btn.active { background: linear-gradient(90deg, #ffcc00, #f0a900); color: #090909; box-shadow: inset 4px 0 0 #ffffff; font-weight: 900; }
+    main { padding: 28px; background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.62)); }
     .topbar {
       display: flex;
       justify-content: space-between;
       gap: 18px;
       align-items: flex-start;
       margin-bottom: 18px;
-      padding: 22px;
-      border-radius: 10px;
+      padding: 24px;
+      border-radius: 12px;
       background:
-        radial-gradient(circle at 88% 18%, rgba(168, 240, 0, .46), transparent 20%),
-        radial-gradient(circle at 58% 0%, rgba(122, 0, 255, .18), transparent 28%),
-        linear-gradient(135deg, #ffffff 0%, #ffffff 56%, rgba(224,0,0,.08) 100%);
-      border: 1px solid var(--line);
+        linear-gradient(105deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.95) 54%, rgba(0, 59, 120, .14) 100%),
+        radial-gradient(circle at 94% 8%, rgba(255, 210, 31, .38), transparent 20%);
+      border: 2px solid rgba(255, 210, 31, .75);
+      box-shadow: var(--shadow);
     }
     h1 { margin: 0 0 6px; font-size: clamp(26px, 4vw, 42px); letter-spacing: 0; }
     h2 { margin: 0; font-size: 22px; }
     h3 { margin: 0 0 10px; font-size: 16px; }
     p { color: var(--muted); }
+    h1, h2, h3 { color: var(--ink); }
+    .topbar h1, .topbar p { color: white; }
+    .topbar p { opacity: .86; }
     .status-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(130px, 1fr));
@@ -159,13 +173,13 @@
       min-width: 420px;
     }
     .stat {
-      background: var(--panel);
-      border: 1px solid var(--line);
+      background: #ffffff;
+      border: 2px solid rgba(255, 210, 31, .70);
       border-radius: 8px;
       padding: 12px;
       box-shadow: var(--shadow);
     }
-    .stat b { color: var(--red); }
+    .stat b { color: var(--black); }
     .stat b { display: block; font-size: 24px; }
     .stat span { color: var(--muted); font-size: 12px; }
     .toolbar {
@@ -178,30 +192,35 @@
     .toolbar label, .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
     .panel {
       background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
+      border: 2px solid rgba(255, 204, 0, .86);
+      border-radius: 10px;
       box-shadow: var(--shadow);
       overflow: hidden;
     }
     .panel-head {
       padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 3px solid var(--gold);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
+      background: linear-gradient(90deg, #050505 0%, #1c1709 70%, #ffcc00 100%);
+      color: white;
     }
+    .panel-head h2, .panel-head h3 { color: white; }
+    .panel-head .badge { background: rgba(255,255,255,.94); color: var(--blue); border-color: rgba(255, 210, 31, .85); }
     .panel-body { padding: 16px; }
     .match-list { display: grid; gap: 10px; }
     .match {
-      border: 1px solid var(--line);
+      border: 1px solid rgba(20, 17, 10, .14);
+      border-left: 6px solid var(--gold);
       border-radius: 8px;
       padding: 12px;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 150px;
       gap: 14px;
       align-items: center;
-      background: white;
+      background: linear-gradient(90deg, #ffffff 0%, #fff8db 100%);
     }
     .teams {
       display: grid;
@@ -246,6 +265,49 @@
       width: 24px;
       height: 17px;
     }
+    .club-mark {
+      width: 38px;
+      height: 42px;
+      display: inline-block;
+      flex: 0 0 auto;
+      object-fit: contain;
+      background: #ffffff;
+      border: 1px solid #d8e4ef;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 21, 47, .10);
+      padding: 3px;
+    }
+    .inline-country .club-mark {
+      width: 28px;
+      height: 30px;
+      border-radius: 5px;
+      padding: 2px;
+    }
+    .team-pick-preview {
+      margin-top: 8px;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border: 1px solid rgba(20, 17, 10, .12);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .team-pick-preview .club-mark {
+      width: 44px;
+      height: 48px;
+    }
+    .team-pick-preview b {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .team-pick-preview.empty {
+      background: #fff8db;
+    }
     .meta { color: var(--muted); font-size: 12px; }
     .team-score-row {
       display: grid;
@@ -266,18 +328,19 @@
       align-items: center;
       justify-content: center;
       min-height: 24px;
-      padding: 2px 8px;
+      padding: 3px 9px;
       border-radius: 999px;
-      background: #eef1ea;
-      color: var(--muted);
+      background: rgba(0, 59, 120, .08);
+      color: var(--blue);
+      border: 1px solid rgba(0, 59, 120, .12);
       font-size: 12px;
       white-space: nowrap;
     }
-    .badge.locked { background: #f6e7e5; color: var(--red); }
-    .badge.open { background: #efffd0; color: #436100; }
-    .badge.result { background: #efe4ff; color: var(--purple); }
+    .badge.locked { background: rgba(229, 30, 77, .10); color: var(--red); }
+    .badge.open { background: rgba(0, 168, 79, .12); color: #00753a; }
+    .badge.result { background: rgba(0, 166, 200, .12); color: var(--blue); }
     .standings-head-right, .history-head-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
-    .audit-box { border: 1px solid var(--line); background: #f8faf6; border-radius: 8px; padding: 8px 10px; min-width: 240px; font-size: 12px; color: var(--muted); }
+    .audit-box { border: 1px solid rgba(255, 210, 31, .70); background: #fffdf2; border-radius: 8px; padding: 8px 10px; min-width: 240px; font-size: 12px; color: var(--muted); }
     .audit-box b { display: block; color: var(--black); font-size: 13px; margin-bottom: 2px; }
     table {
       width: 100%;
@@ -292,13 +355,13 @@
       font-size: 14px;
     }
     th {
-      color: var(--muted);
+      color: #ffffff;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0;
-      background: #f7f8f4;
+      background: #111111;
     }
-    .subtotal-row td { background: #f8faf6; font-weight: 800; color: var(--black); }
+    .subtotal-row td { background: #fff7cf; font-weight: 800; color: var(--black); }
     .right { text-align: right; }
     .audit-table th:first-child,
     .audit-table td:first-child {
@@ -309,7 +372,8 @@
       min-width: 170px;
     }
     .audit-table th:first-child {
-      background: #f7f8f4;
+      background: #111111;
+      color: #ffffff;
       z-index: 2;
     }
     .audit-table .missing {
@@ -356,7 +420,7 @@
     .password-toggle label { margin-top: 6px; }
     .session-toggle summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-weight: 800; list-style: none; }
     .session-toggle summary::-webkit-details-marker { display: none; }
-    .session-toggle summary::after { content: "▾"; font-size: 14px; opacity: .8; transition: transform .2s ease; }
+    .session-toggle summary::after { content: "v"; font-size: 14px; opacity: .8; transition: transform .2s ease; }
     .session-toggle[open] summary::after { transform: rotate(180deg); }
     .session-toggle summary small { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.72); text-align: right; }
     .session-body { margin-top: 12px; }
@@ -364,7 +428,7 @@
       position: fixed;
       right: 18px;
       bottom: 18px;
-      background: #14261e;
+      background: linear-gradient(90deg, #111111, #ffcc00);
       color: white;
       padding: 12px 14px;
       border-radius: 8px;
@@ -378,7 +442,7 @@
     .toast.show { opacity: 1; transform: translateY(0); }
     @media (max-width: 980px) {
       .app { grid-template-columns: 1fr; }
-      aside { position: static; height: auto; }
+      aside { position: static; height: auto; border-right: 0; border-bottom: 4px solid var(--gold); }
       main { padding: 18px; }
       .topbar { display: grid; }
       .status-grid { min-width: 0; grid-template-columns: repeat(3, 1fr); }
@@ -394,15 +458,14 @@
       .panel-head { align-items: flex-start; flex-direction: column; }
       .standings-head-right, .history-head-right { justify-content: flex-start; width: 100%; }
       .audit-box { width: 100%; min-width: 0; }
-    }
-  </style>
+    }  </style>
 </head>
 <body>
   <div class="app">
     <aside>
-      <div class="brand"><div class="ball" aria-label="Logo Mundial 2026">
-        <img src="./world-cup-2026-logo.png" alt="Logo Mundial 2026" />
-      </div><div>Polla Mundialista 2026</div></div>
+      <div class="brand"><div class="ball" aria-label="Logo Polla Futbolera">
+        <img src="./polla-futbolera-logo.png" alt="Logo Polla Futbolera" />
+      </div><div>POLLA FUTBOLERA</div></div>
       <details id="sessionPanel" class="session session-toggle">
         <summary><span>Usuario / sesión</span><small id="sessionSummary">Toca para entrar</small></summary>
         <div class="session-body">
@@ -433,13 +496,13 @@
     <main>
       <div class="topbar">
         <div>
-          <h1>Polla Mundialista 2026</h1>
-          <p>Predicciones por jornada, resultados oficiales y posiciones.....</p>
+          <h1>POLLA FUTBOLERA</h1>
+          <p>Predicciones por jornada, resultados oficiales y tabla de puntajes.</p>
         </div>
         <div class="status-grid">
-          <div class="stat"><b id="statUsers">0</b><span>Participantes</span></div>
-          <div class="stat"><b id="statMatches">0</b><span>Partidos</span></div>
-          <div class="stat"><b id="statDone">0</b><span>Resultados cargados</span></div>
+          <div class="stat"><b id="statUsers">-</b><span id="statUsersLabel">Jornada actual</span></div>
+          <div class="stat"><b id="statMatches">0</b><span id="statMatchesLabel">Partidos en juego</span></div>
+          <div class="stat"><b id="statDone">0</b><span id="statDoneLabel">Marcadores cargados</span></div>
         </div>
       </div>
 
@@ -463,9 +526,10 @@
       <section id="view-standings" class="hidden">
         <div class="panel">
           <div class="panel-head">
-            <h2>Tabla de posiciones</h2>
+            <h2>Tabla de puntos por jornada</h2>
             <div class="standings-head-right">
               <span class="badge result">Exacto 3 pts - Resultado 1 pt</span>
+              <div style="min-width:220px"><select id="standingsRound"></select></div>
               <div id="lastLoadedBox" class="audit-box"></div>
             </div>
           </div>
@@ -520,12 +584,12 @@
           <div class="panel">
             <div class="panel-head"><h2>Agregar partido</h2></div>
             <div class="panel-body">
-              <div class="field"><label for="newMatchGroup">Grupo / fase</label><input id="newMatchGroup" maxlength="50" placeholder="Dieciseisavos" /></div>
+              <div class="field"><label for="newMatchGroup">Campeonato</label><select id="newMatchGroup"></select></div>
               <div class="field" style="margin-top:8px"><label for="newMatchRound">Jornada</label><input id="newMatchRound" type="number" min="1" placeholder="17" /></div>
               <div class="field" style="margin-top:8px"><label for="newMatchDate">Fecha</label><input id="newMatchDate" type="date" /></div>
               <div class="field" style="margin-top:8px"><label for="newMatchTime">Hora</label><input id="newMatchTime" type="time" /></div>
-              <div class="field" style="margin-top:8px"><label for="newMatchHome">Local</label><input id="newMatchHome" placeholder="Pais local" /></div>
-              <div class="field" style="margin-top:8px"><label for="newMatchAway">Visitante</label><input id="newMatchAway" placeholder="Pais visitante" /></div>
+              <div class="field" style="margin-top:8px"><label for="newMatchHome">Local</label><select id="newMatchHome"></select><div id="newMatchHomePreview" class="team-pick-preview empty">Selecciona el equipo local</div></div>
+              <div class="field" style="margin-top:8px"><label for="newMatchAway">Visitante</label><select id="newMatchAway"></select><div id="newMatchAwayPreview" class="team-pick-preview empty">Selecciona el equipo visitante</div></div>
               <button id="addMatch" class="primary" type="button" style="width:100%; margin:10px 0 14px">Agregar partido</button>
               <div id="customMatchList" class="people-list"></div>
             </div>
@@ -560,41 +624,290 @@
     const db = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
     const DEFAULT_ADMIN_PASSWORD = "admin2026";
     const DEFAULT_PLAYER_PASSWORD = "jugador2026";
-    const STORAGE_KEY = "polla-mundialista-2026";
+    const STORAGE_KEY = "polla-futbolera-sin-usuarios-2026-v2";
+    const COMPETITION_KEY = "polla-futbolera-sin-usuarios-2026-v2";
     const AUTO_LOGOUT_MS = 5 * 60 * 1000;
     let inactivityTimer = null;
-    const defaultUsers = Array.from({ length: 50 }, (_, i) => `Jugador ${String(i + 1).padStart(2, "0")}`);
-    const flagCodes = {
-      "Mexico":"mx","Sudafrica":"za","Corea del Sur":"kr","Rep. Checa":"cz","Canada":"ca","Bosnia":"ba",
-      "Estados Unidos":"us","Paraguay":"py","Catar":"qa","Suiza":"ch","Brasil":"br","Marruecos":"ma",
-      "Haiti":"ht","Escocia":"gb-sct","Australia":"au","Turquia":"tr","Alemania":"de","Curazao":"cw",
-      "Paises Bajos":"nl","Japon":"jp","Costa de Marfil":"ci","Ecuador":"ec","Suecia":"se","Tunez":"tn",
-      "España":"es","Cabo Verde":"cv","Belgica":"be","Egipto":"eg","Arabia Saudita":"sa","Uruguay":"uy",
-      "Iran":"ir","Nueva Zelanda":"nz","Francia":"fr","Senegal":"sn","Irak":"iq","Noruega":"no",
-      "Argentina":"ar","Argelia":"dz","Austria":"at","Jordania":"jo","Portugal":"pt","Rep. de Congo":"cg",
-      "Rep. del Congo":"cg","Inglaterra":"gb-eng","Croacia":"hr","Ghana":"gh","Panama":"pa",
-      "Uzbekistan":"uz","Colombia":"co"
+    const defaultUsers = [];
+    const championshipTeams = {
+          "Liga BetPlay": [
+                "Alianza Valledupar F.C.",
+                "América de Cali",
+                "Águilas Doradas",
+                "Boyacá Chicó F.C.",
+                "Atlético Bucaramanga",
+                "Deportivo Cali",
+                "Cúcuta Deportivo",
+                "Fortaleza CEIF",
+                "Internacional de Bogotá",
+                "Jaguares F.C.",
+                "Junior F.C.",
+                "Llaneros F.C.",
+                "Independiente Medellín",
+                "Millonarios F.C.",
+                "Atlético Nacional",
+                "Once Caldas",
+                "Deportivo Pasto",
+                "Deportivo Pereira",
+                "Independiente Santa Fe",
+                "Deportes Tolima"
+          ],
+          "Copa BetPlay": [
+                "Deportivo Cali",
+                "Atlético Bucaramanga",
+                "Alianza Valledupar F.C.",
+                "Real Cartagena",
+                "Unión Magdalena",
+                "Millonarios F.C.",
+                "Llaneros F.C.",
+                "Boyacá Chicó F.C.",
+                "Fortaleza CEIF",
+                "Atlético Huila",
+                "Independiente Medellín",
+                "Cúcuta Deportivo",
+                "Boca Juniors de Cali",
+                "Deportes Quindío",
+                "Águilas Doradas",
+                "Jaguares F.C.",
+                "Deportivo Pereira",
+                "Real Santander",
+                "Atlético F.C."
+          ],
+          "Sudamericana": [
+                "América de Cali",
+                "Tigre",
+                "Macará",
+                "Alianza Atlético",
+                "Atlético Mineiro",
+                "Cienciano",
+                "Puerto Cabello",
+                "Juventud",
+                "São Paulo",
+                "Millonarios F.C.",
+                "Boston River",
+                "O'Higgins",
+                "Santos",
+                "San Lorenzo",
+                "Deportivo Cuenca",
+                "Recoleta",
+                "Racing Club",
+                "Caracas",
+                "Independiente",
+                "Botafogo",
+                "Grêmio",
+                "Palestino",
+                "Montevideo City Torque",
+                "Deportivo Riestra",
+                "Olimpia",
+                "Vasco da Gama",
+                "Audax Italiano",
+                "Barracas Central",
+                "River Plate",
+                "RB Bragantino",
+                "Blooming",
+                "Carabobo"
+          ],
+          "Libertadores": [
+                "Flamengo",
+                "Palmeiras",
+                "Boca Juniors",
+                "Peñarol",
+                "Nacional",
+                "Liga de Quito",
+                "Fluminense",
+                "Independiente del Valle",
+                "Lanús",
+                "Libertad",
+                "Estudiantes LP",
+                "Cerro Porteño",
+                "Corinthians",
+                "Bolívar",
+                "Cruzeiro",
+                "Universitario",
+                "Junior F.C.",
+                "Universidad Católica",
+                "Rosario Central",
+                "Independiente Santa Fe",
+                "Always Ready",
+                "Coquimbo Unido",
+                "Deportivo La Guaira",
+                "Cusco",
+                "Universidad Central",
+                "Platense",
+                "Independiente Rivadavia",
+                "Mirassol",
+                "Independiente Medellín",
+                "Deportes Tolima",
+                "Sporting Cristal",
+                "Barcelona SC"
+          ],
+          "Liga Europea": [
+                "Arsenal",
+                "Manchester City",
+                "Manchester United",
+                "Aston Villa",
+                "Liverpool",
+                "Inter Milan",
+                "Napoli",
+                "Roma",
+                "Como",
+                "Barcelona",
+                "Real Madrid",
+                "Villarreal",
+                "Atlético Madrid",
+                "Real Betis",
+                "Bayern Munich",
+                "Borussia Dortmund",
+                "RB Leipzig",
+                "Stuttgart",
+                "Paris Saint-Germain",
+                "RC Lens",
+                "Lille OSC",
+                "PSV Eindhoven",
+                "Feyenoord",
+                "Porto",
+                "Sporting Lisboa",
+                "Club Brugge",
+                "Slavia Prague",
+                "Galatasaray",
+                "Shakhtar Donetsk",
+                "Champ Path 1",
+                "Champ Path 2",
+                "Champ Path 3",
+                "Champ Path 4",
+                "Champ Path 5",
+                "Champ Path 6",
+                "League Path 1",
+                "League Path 2"
+          ]
     };
-    const baseMatches = [
-      ["A",1,"2026-06-11","Mexico","Sudafrica","14:00"],["A",1,"2026-06-11","Corea del Sur","Rep. Checa","21:00"],["B",2,"2026-06-12","Canada","Bosnia","14:00"],["D",2,"2026-06-12","Estados Unidos","Paraguay","20:00"],
-      ["B",3,"2026-06-13","Catar","Suiza","14:00"],["C",3,"2026-06-13","Brasil","Marruecos","17:00"],["C",3,"2026-06-13","Haiti","Escocia","20:00"],["D",3,"2026-06-13","Australia","Turquia","23:00"],
-      ["E",4,"2026-06-14","Alemania","Curazao","12:00"],["F",4,"2026-06-14","Paises Bajos","Japon","15:00"],["E",4,"2026-06-14","Costa de Marfil","Ecuador","18:00"],["F",4,"2026-06-14","Suecia","Tunez","21:00"],
-      ["H",5,"2026-06-15","España","Cabo Verde","11:00"],["G",5,"2026-06-15","Belgica","Egipto","14:00"],["H",5,"2026-06-15","Arabia Saudita","Uruguay","17:00"],["G",5,"2026-06-15","Iran","Nueva Zelanda","20:00"],
-      ["I",6,"2026-06-16","Francia","Senegal","14:00"],["I",6,"2026-06-16","Irak","Noruega","17:00"],["J",6,"2026-06-16","Argentina","Argelia","20:00"],["J",6,"2026-06-16","Austria","Jordania","23:00"],
-      ["K",7,"2026-06-17","Portugal","Rep. de Congo","12:00"],["L",7,"2026-06-17","Inglaterra","Croacia","15:00"],["L",7,"2026-06-17","Ghana","Panama","18:00"],["K",7,"2026-06-17","Uzbekistan","Colombia","21:00"],
-      ["A",8,"2026-06-18","Rep. Checa","Sudafrica","11:00"],["B",8,"2026-06-18","Suiza","Bosnia","14:00"],["B",8,"2026-06-18","Canada","Catar","17:00"],["A",8,"2026-06-18","Mexico","Corea del Sur","20:00"],
-      ["D",9,"2026-06-19","Estados Unidos","Australia","14:00"],["C",9,"2026-06-19","Escocia","Marruecos","17:00"],["C",9,"2026-06-19","Brasil","Haiti","19:30"],["D",9,"2026-06-19","Turquia","Paraguay","22:00"],
-      ["F",10,"2026-06-20","Paises Bajos","Suecia","12:00"],["E",10,"2026-06-20","Alemania","Costa de Marfil","15:00"],["E",10,"2026-06-20","Ecuador","Curazao","19:00"],["F",10,"2026-06-20","Tunez","Japon","23:00"],
-      ["H",11,"2026-06-21","España","Arabia Saudita","11:00"],["G",11,"2026-06-21","Belgica","Iran","14:00"],["H",11,"2026-06-21","Uruguay","Cabo Verde","17:00"],["G",11,"2026-06-21","Nueva Zelanda","Egipto","20:00"],
-      ["J",12,"2026-06-22","Argentina","Austria","12:00"],["I",12,"2026-06-22","Francia","Irak","16:00"],["I",12,"2026-06-22","Noruega","Senegal","19:00"],["J",12,"2026-06-22","Jordania","Argelia","22:00"],
-      ["K",13,"2026-06-23","Portugal","Uzbekistan","12:00"],["L",13,"2026-06-23","Inglaterra","Ghana","15:00"],["L",13,"2026-06-23","Panama","Croacia","18:00"],["K",13,"2026-06-23","Colombia","Rep. de Congo","21:00"],
-      ["B",14,"2026-06-24","Suiza","Canada","14:00"],["B",14,"2026-06-24","Bosnia","Catar","14:00"],["C",14,"2026-06-24","Marruecos","Haiti","17:00"],["C",14,"2026-06-24","Escocia","Brasil","17:00"],
-      ["A",14,"2026-06-24","Sudafrica","Corea del Sur","20:00"],["A",14,"2026-06-24","Rep. Checa","Mexico","20:00"],["E",15,"2026-06-25","Curazao","Costa de Marfil","15:00"],["E",15,"2026-06-25","Ecuador","Alemania","15:00"],
-      ["F",15,"2026-06-25","Tunez","Paises Bajos","18:00"],["F",15,"2026-06-25","Japon","Suecia","18:00"],["D",15,"2026-06-25","Turquia","Estados Unidos","21:00"],["D",15,"2026-06-25","Paraguay","Australia","21:00"],
-      ["I",16,"2026-06-26","Noruega","Francia","14:00"],["I",16,"2026-06-26","Senegal","Irak","14:00"],["H",16,"2026-06-26","Cabo Verde","Arabia Saudita","19:00"],["H",16,"2026-06-26","Uruguay","España","19:00"],
-      ["G",16,"2026-06-26","Nueva Zelanda","Belgica","22:00"],["G",16,"2026-06-26","Egipto","Iran","22:00"],["L",17,"2026-06-27","Panama","Inglaterra","16:00"],["L",17,"2026-06-27","Croacia","Ghana","16:00"],
-      ["K",17,"2026-06-27","Colombia","Portugal","18:30"],["K",17,"2026-06-27","Rep. del Congo","Uzbekistan","18:30"],["J",17,"2026-06-27","Argelia","Austria","21:00"],["J",17,"2026-06-27","Jordania","Argentina","21:00"]
-    ].map((m, i) => ({ id: `m${i + 1}`, group: m[0], round: m[1], date: m[2], home: m[3], away: m[4], time: m[5] || "", custom: false }));
+    const teamCrests = {
+          "Alianza Valledupar F.C.": "./escudos-campeonatos/alianza-valledupar-f-c.png",
+          "América de Cali": "./escudos-campeonatos/america-de-cali.png",
+          "Águilas Doradas": "./escudos-campeonatos/aguilas-doradas.png",
+          "Boyacá Chicó F.C.": "./escudos-campeonatos/boyaca-chico-f-c.png",
+          "Atlético Bucaramanga": "./escudos-campeonatos/atletico-bucaramanga.png",
+          "Deportivo Cali": "./escudos-campeonatos/deportivo-cali.png",
+          "Cúcuta Deportivo": "./escudos-campeonatos/cucuta-deportivo.png",
+          "Fortaleza CEIF": "./escudos-campeonatos/fortaleza-ceif.png",
+          "Internacional de Bogotá": "./escudos-campeonatos/internacional-de-bogota.png",
+          "Jaguares F.C.": "./escudos-campeonatos/jaguares-f-c.png",
+          "Junior F.C.": "./escudos-campeonatos/junior-f-c.png",
+          "Llaneros F.C.": "./escudos-campeonatos/llaneros-f-c.png",
+          "Independiente Medellín": "./escudos-campeonatos/independiente-medellin.png",
+          "Millonarios F.C.": "./escudos-campeonatos/millonarios-f-c.png",
+          "Atlético Nacional": "./escudos-campeonatos/atletico-nacional.png",
+          "Once Caldas": "./escudos-campeonatos/once-caldas.png",
+          "Deportivo Pasto": "./escudos-campeonatos/deportivo-pasto.png",
+          "Deportivo Pereira": "./escudos-campeonatos/deportivo-pereira.png",
+          "Independiente Santa Fe": "./escudos-campeonatos/independiente-santa-fe.png",
+          "Deportes Tolima": "./escudos-campeonatos/deportes-tolima.png",
+          "Real Cartagena": "./escudos-campeonatos/real-cartagena.png",
+          "Unión Magdalena": "./escudos-campeonatos/union-magdalena.png",
+          "Atlético Huila": "./escudos-campeonatos/atletico-huila.png",
+          "Boca Juniors de Cali": "./escudos-campeonatos/boca-juniors-de-cali.png",
+          "Deportes Quindío": "./escudos-campeonatos/deportes-quindio.png",
+          "Real Santander": "./escudos-campeonatos/real-santander.png",
+          "Atlético F.C.": "./escudos-campeonatos/atletico-f-c.png",
+          "Tigre": "./escudos-campeonatos/tigre.png",
+          "Macará": "./escudos-campeonatos/macara.png",
+          "Alianza Atlético": "./escudos-campeonatos/alianza-atletico.png",
+          "Atlético Mineiro": "./escudos-campeonatos/atletico-mineiro.png",
+          "Cienciano": "./escudos-campeonatos/cienciano.png",
+          "Puerto Cabello": "./escudos-campeonatos/puerto-cabello.png",
+          "Juventud": "./escudos-campeonatos/juventud.png",
+          "São Paulo": "./escudos-campeonatos/sao-paulo.png",
+          "Boston River": "./escudos-campeonatos/boston-river.png",
+          "O'Higgins": "./escudos-campeonatos/o-higgins.png",
+          "Santos": "./escudos-campeonatos/santos.png",
+          "San Lorenzo": "./escudos-campeonatos/san-lorenzo.png",
+          "Deportivo Cuenca": "./escudos-campeonatos/deportivo-cuenca.png",
+          "Recoleta": "./escudos-campeonatos/recoleta.png",
+          "Racing Club": "./escudos-campeonatos/racing-club.png",
+          "Caracas": "./escudos-campeonatos/caracas.png",
+          "Independiente": "./escudos-campeonatos/independiente.png",
+          "Botafogo": "./escudos-campeonatos/botafogo.png",
+          "Grêmio": "./escudos-campeonatos/gremio.png",
+          "Palestino": "./escudos-campeonatos/palestino.png",
+          "Montevideo City Torque": "./escudos-campeonatos/montevideo-city-torque.png",
+          "Deportivo Riestra": "./escudos-campeonatos/deportivo-riestra.png",
+          "Olimpia": "./escudos-campeonatos/olimpia.png",
+          "Vasco da Gama": "./escudos-campeonatos/vasco-da-gama.png",
+          "Audax Italiano": "./escudos-campeonatos/audax-italiano.png",
+          "Barracas Central": "./escudos-campeonatos/barracas-central.png",
+          "River Plate": "./escudos-campeonatos/river-plate.png",
+          "RB Bragantino": "./escudos-campeonatos/rb-bragantino.png",
+          "Blooming": "./escudos-campeonatos/blooming.png",
+          "Carabobo": "./escudos-campeonatos/carabobo.png",
+          "Flamengo": "./escudos-campeonatos/flamengo.png",
+          "Palmeiras": "./escudos-campeonatos/palmeiras.png",
+          "Boca Juniors": "./escudos-campeonatos/boca-juniors.png",
+          "Peñarol": "./escudos-campeonatos/penarol.png",
+          "Nacional": "./escudos-campeonatos/nacional.png",
+          "Liga de Quito": "./escudos-campeonatos/liga-de-quito.png",
+          "Fluminense": "./escudos-campeonatos/fluminense.png",
+          "Independiente del Valle": "./escudos-campeonatos/independiente-del-valle.png",
+          "Lanús": "./escudos-campeonatos/lanus.png",
+          "Libertad": "./escudos-campeonatos/libertad.png",
+          "Estudiantes LP": "./escudos-campeonatos/estudiantes-lp.png",
+          "Cerro Porteño": "./escudos-campeonatos/cerro-porteno.png",
+          "Corinthians": "./escudos-campeonatos/corinthians.png",
+          "Bolívar": "./escudos-campeonatos/bolivar.png",
+          "Cruzeiro": "./escudos-campeonatos/cruzeiro.png",
+          "Universitario": "./escudos-campeonatos/universitario.png",
+          "Universidad Católica": "./escudos-campeonatos/universidad-catolica.png",
+          "Rosario Central": "./escudos-campeonatos/rosario-central.png",
+          "Always Ready": "./escudos-campeonatos/always-ready.png",
+          "Coquimbo Unido": "./escudos-campeonatos/coquimbo-unido.png",
+          "Deportivo La Guaira": "./escudos-campeonatos/deportivo-la-guaira.png",
+          "Cusco": "./escudos-campeonatos/cusco.png",
+          "Universidad Central": "./escudos-campeonatos/universidad-central.png",
+          "Platense": "./escudos-campeonatos/platense.png",
+          "Independiente Rivadavia": "./escudos-campeonatos/independiente-rivadavia.png",
+          "Mirassol": "./escudos-campeonatos/mirassol.png",
+          "Sporting Cristal": "./escudos-campeonatos/sporting-cristal.png",
+          "Barcelona SC": "./escudos-campeonatos/barcelona-sc.png",
+          "Arsenal": "./escudos-campeonatos/arsenal.png",
+          "Manchester City": "./escudos-campeonatos/manchester-city.png",
+          "Manchester United": "./escudos-campeonatos/manchester-united.png",
+          "Aston Villa": "./escudos-campeonatos/aston-villa.png",
+          "Liverpool": "./escudos-campeonatos/liverpool.png",
+          "Inter Milan": "./escudos-campeonatos/inter-milan.png",
+          "Napoli": "./escudos-campeonatos/napoli.png",
+          "Roma": "./escudos-campeonatos/roma.png",
+          "Como": "./escudos-campeonatos/como.png",
+          "Barcelona": "./escudos-campeonatos/barcelona.png",
+          "Real Madrid": "./escudos-campeonatos/real-madrid.png",
+          "Villarreal": "./escudos-campeonatos/villarreal.png",
+          "Atlético Madrid": "./escudos-campeonatos/atletico-madrid.png",
+          "Real Betis": "./escudos-campeonatos/real-betis.png",
+          "Bayern Munich": "./escudos-campeonatos/bayern-munich.png",
+          "Borussia Dortmund": "./escudos-campeonatos/borussia-dortmund.png",
+          "RB Leipzig": "./escudos-campeonatos/rb-leipzig.png",
+          "Stuttgart": "./escudos-campeonatos/stuttgart.png",
+          "Paris Saint-Germain": "./escudos-campeonatos/paris-saint-germain.png",
+          "RC Lens": "./escudos-campeonatos/rc-lens.png",
+          "Lille OSC": "./escudos-campeonatos/lille-osc.png",
+          "PSV Eindhoven": "./escudos-campeonatos/psv-eindhoven.png",
+          "Feyenoord": "./escudos-campeonatos/feyenoord.png",
+          "Porto": "./escudos-campeonatos/porto.png",
+          "Sporting Lisboa": "./escudos-campeonatos/sporting-lisboa.png",
+          "Club Brugge": "./escudos-campeonatos/club-brugge.png",
+          "Slavia Prague": "./escudos-campeonatos/slavia-prague.png",
+          "Galatasaray": "./escudos-campeonatos/galatasaray.png",
+          "Shakhtar Donetsk": "./escudos-campeonatos/shakhtar-donetsk.png",
+          "Champ Path 1": "./escudos-campeonatos/champ-path-1.png",
+          "Champ Path 2": "./escudos-campeonatos/champ-path-2.png",
+          "Champ Path 3": "./escudos-campeonatos/champ-path-3.png",
+          "Champ Path 4": "./escudos-campeonatos/champ-path-4.png",
+          "Champ Path 5": "./escudos-campeonatos/champ-path-5.png",
+          "Champ Path 6": "./escudos-campeonatos/champ-path-6.png",
+          "League Path 1": "./escudos-campeonatos/league-path-1.png",
+          "League Path 2": "./escudos-campeonatos/league-path-2.png"
+    };
+    const ligaBetPlayTeams = [...new Set(Object.values(championshipTeams).flat())];
+    const teamCrestAliases = Object.fromEntries(Object.entries(teamCrests).map(([name, src]) => [normalizeTeamKey(name), src]));
+    const baseMatches = [];
     const excludedCompetitionMatchIds = new Set(["m9"]);
 
     let state = loadState();
@@ -607,11 +920,12 @@
       return Object.fromEntries(users.map(user => [user, DEFAULT_PLAYER_PASSWORD]));
     }
     function normalizeState(raw) {
-      const base = raw || {};
-      const users = Array.isArray(base.users) && base.users.length ? base.users : defaultUsers;
+      const base = raw?.competitionKey === COMPETITION_KEY ? raw : {};
+      const users = Array.isArray(base.users) ? base.users : defaultUsers;
       const passwords = { ...defaultPasswords(users), ...(base.passwords || {}) };
       users.forEach(user => { passwords[user] ||= DEFAULT_PLAYER_PASSWORD; });
       return {
+        competitionKey: COMPETITION_KEY,
         users,
         passwords,
         adminPassword: base.adminPassword || DEFAULT_ADMIN_PASSWORD,
@@ -632,7 +946,14 @@
         toast("No se pudo conectar a Supabase");
         return;
       }
-      if (data?.users?.length) {
+      if (data?.competitionKey !== COMPETITION_KEY) {
+        state.users = [];
+        state.passwords = {};
+        fillUsers();
+        renderStats();
+        return;
+      }
+      if (Array.isArray(data?.users)) {
         state.users = data.users;
         state.adminPassword = "";
         state.passwords = defaultPasswords(state.users);
@@ -776,16 +1097,46 @@
     function escapeHtml(value) {
       return String(value).replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" }[char]));
     }
-    function flagMarkup(country) {
-      const code = flagCodes[country];
-      if (!code) return `<span class="flag">--</span>`;
-      return `<span class="flag"><img src="https://flagcdn.com/48x36/${code}.png" alt="Bandera de ${escapeHtml(country)}" loading="lazy" onerror="this.replaceWith(document.createTextNode('${code.toUpperCase()}'))"></span>`;
+    function normalizeTeamKey(team) {
+      return String(team)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/f\.c\.|fc|daf|ceif/g, "")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+    }
+    function teamCrestSrc(team) {
+      const cleanTeam = String(team).trim();
+      return teamCrests[cleanTeam] || teamCrestAliases[normalizeTeamKey(cleanTeam)] || "";
+    }
+    function clubMarkup(team) {
+      const src = teamCrestSrc(team);
+      if (!src) return "";
+      const safeTeam = escapeHtml(team);
+      return `<img class="club-mark" src="${escapeHtml(src)}" alt="Escudo ${safeTeam}" title="${safeTeam}" />`;
     }
     function countryLabel(country) {
-      return `${flagMarkup(country)}<span>${escapeHtml(country)}</span>`;
+      return `${clubMarkup(country)}<span>${escapeHtml(country)}</span>`;
     }
     function countryInline(country) {
-      return `<span class="inline-country">${flagMarkup(country)}<span>${escapeHtml(country)}</span></span>`;
+      return `<span class="inline-country">${clubMarkup(country)}<span>${escapeHtml(country)}</span></span>`;
+    }
+    function renderTeamPickPreview(selectId, previewId) {
+      const team = byId(selectId).value;
+      const preview = byId(previewId);
+      if (!team) {
+        preview.className = "team-pick-preview empty";
+        preview.textContent = selectId === "newMatchHome" ? "Selecciona el equipo local" : "Selecciona el equipo visitante";
+        return;
+      }
+      const crest = clubMarkup(team);
+      preview.className = "team-pick-preview";
+      preview.innerHTML = `${crest}<div><b>${escapeHtml(team)}</b><span>${teamCrestSrc(team) ? "Escudo cargado" : "Sin escudo disponible"}</span></div>`;
+    }
+    function renderNewMatchTeamPreviews() {
+      renderTeamPickPreview("newMatchHome", "newMatchHomePreview");
+      renderTeamPickPreview("newMatchAway", "newMatchAwayPreview");
     }
     function colombiaNowParts() {
       return new Intl.DateTimeFormat("en-CA", {
@@ -827,12 +1178,13 @@
       if (Number(p.home) === Number(r.home) && Number(p.away) === Number(r.away)) return 3;
       return outcome(p) === outcome(r) ? 1 : 0;
     }
-    function standings() {
+    function standings(round) {
+      const roundMatches = matches.filter(match => String(match.round) === String(round));
       const rows = state.users.map(user => {
         let pts = 0, exact = 0, result = 0, played = 0;
-        matches.forEach(match => {
+        roundMatches.forEach(match => {
           const p = pointsFor(user, match);
-          const hasResult = !!state.results[match.id];
+          const hasResult = hasCompleteScore(state.results[match.id]);
           if (hasResult) played += 1;
           pts += p;
           if (p === 3) exact += 1;
@@ -840,12 +1192,6 @@
         });
         return { user, pts, exact, result, played };
       }).sort((a, b) => b.pts - a.pts || a.user.localeCompare(b.user));
-      let lastPts = null, lastRank = 0;
-      rows.forEach((row, idx) => {
-        if (row.pts !== lastPts) lastRank = idx + 1;
-        row.rank = lastRank;
-        lastPts = row.pts;
-      });
       return rows;
     }
     function filteredMatches(roundId, groupId, searchId) {
@@ -877,7 +1223,7 @@
         const pts = pointsFor(targetUser, match);
         return `<article class="match">
           <div class="teams">
-            <div class="meta">Grupo ${match.group} - Jornada ${match.round} - ${formatMatchDateTime(match)}</div>
+            <div class="meta">Campeonato ${match.group} - Jornada ${match.round} - ${formatMatchDateTime(match)}</div>
             <div class="team-score-row"><div class="team">${countryLabel(match.home)}</div>${scoreInput(match, pred, inputLocked, "pred", "home")}</div>
             <div class="team-score-row"><div class="team">${countryLabel(match.away)}</div>${scoreInput(match, pred, inputLocked, "pred", "away")}</div>
           </div>
@@ -895,7 +1241,7 @@
         const result = state.results[match.id] || {};
         return `<article class="match">
           <div class="teams">
-            <div class="meta">Grupo ${match.group} - Jornada ${match.round} - ${formatMatchDateTime(match)}</div>
+            <div class="meta">Campeonato ${match.group} - Jornada ${match.round} - ${formatMatchDateTime(match)}</div>
             <div class="team-score-row"><div class="team">${countryLabel(match.home)}</div>${scoreInput(match, result, !session.admin, "result", "home")}</div>
             <div class="team-score-row"><div class="team">${countryLabel(match.away)}</div>${scoreInput(match, result, !session.admin, "result", "away")}</div>
           </div>
@@ -914,9 +1260,15 @@
     }
     function renderStandings() {
       byId("lastLoadedBox").innerHTML = lastLoadedResultInfo();
+      const round = byId("standingsRound").value;
+      if (!round) {
+        byId("standingsTable").innerHTML = '<tbody><tr><td class="empty">Crea partidos y asígnalos a una jornada para ver la tabla.</td></tr></tbody>';
+        return;
+      }
+      const rows = standings(round);
       byId("standingsTable").innerHTML = `
-        <thead><tr><th>Participante</th><th class="right">Puntos</th><th class="right">Exactos</th><th class="right">Resultados</th><th class="right">Partidos cerrados</th></tr></thead>
-        <tbody>${standings().map(r => `<tr><td>${r.user}</td><td class="right"><b>${r.pts}</b></td><td class="right">${r.exact}</td><td class="right">${r.result}</td><td class="right">${r.played}</td></tr>`).join("")}</tbody>`;
+        <thead><tr><th>Participante</th><th class="right">Puntos Jornada ${escapeHtml(round)}</th><th class="right">Exactos</th><th class="right">Resultados</th><th class="right">Partidos cerrados</th></tr></thead>
+        <tbody>${rows.length ? rows.map(r => `<tr><td>${escapeHtml(r.user)}</td><td class="right"><b>${r.pts}</b></td><td class="right">${r.exact}</td><td class="right">${r.result}</td><td class="right">${r.played}</td></tr>`).join("") : '<tr><td class="empty" colspan="5">No hay participantes creados.</td></tr>'}</tbody>`;
     }
     function renderHistory() {
       const user = byId("historyUser").value || session.user;
@@ -1022,21 +1374,49 @@
     function renderCustomMatches() {
       byId("customMatchList").innerHTML = state.customMatches.length ? state.customMatches.map(match => `<div class="person">
         <b>${countryInline(match.home)} vs ${countryInline(match.away)}</b>
-        <span class="meta">Grupo ${match.group} - Jornada ${match.round} - ${formatMatchDateTime(match)}</span>
+        <span class="meta">Campeonato ${match.group} - Jornada ${match.round} - ${formatMatchDateTime(match)}</span>
         <button data-remove-match="${match.id}" type="button" ${session.admin ? "" : "disabled"}>Eliminar</button>
       </div>`).join("") : `<div class="empty" style="padding:18px">No hay partidos agregados.</div>`;
+    }
+    function activeRoundForStats() {
+      const activeView = document.querySelector("main > section:not(.hidden)")?.id || "";
+      const viewRoundSelect = {
+        "view-predictions": "roundFilter",
+        "view-standings": "standingsRound",
+        "view-admin": "adminRoundFilter",
+        "view-audit": "auditRound"
+      }[activeView];
+      const selected = viewRoundSelect ? byId(viewRoundSelect)?.value : "";
+      if (selected && selected !== "all") return String(selected);
+      if (activeView === "view-admin") {
+        const receptionRound = byId("receptionRound")?.value;
+        if (receptionRound) return String(receptionRound);
+      }
+      const pending = matches.find(match => !hasCompleteScore(state.results[match.id]));
+      return String(pending?.round || matches[0]?.round || "");
+    }
+    function statsForRound(round) {
+      const rows = matches.filter(match => String(match.round) === String(round));
+      const championships = [...new Set(rows.map(match => match.group).filter(Boolean))];
+      const loaded = rows.filter(match => hasCompleteScore(state.results[match.id])).length;
+      return { rows, championships, loaded };
     }
     function renderStats() {
       document.body.classList.toggle("locked", !session.authenticated);
       document.body.classList.toggle("not-admin", !session.admin);
       byId("loginBtn").classList.toggle("hidden", session.authenticated);
       byId("logoutBtn").classList.toggle("hidden", !session.authenticated);
-      byId("playerPasswordPanel").classList.toggle("hidden", !session.authenticated || session.admin);
+      byId("playerPasswordPanel").classList.toggle("hidden", !session.authenticated);
       byId("userSelect").disabled = session.authenticated;
       byId("adminPass").disabled = session.authenticated;
-      byId("statUsers").textContent = state.users.length;
-      byId("statMatches").textContent = matches.length;
-      byId("statDone").textContent = matches.filter(match => state.results[match.id]).length;
+      const statsRound = activeRoundForStats();
+      const roundStats = statsForRound(statsRound);
+      byId("statUsers").textContent = statsRound ? `Jornada ${statsRound}` : "-";
+      byId("statUsersLabel").textContent = roundStats.championships.length ? roundStats.championships.join(" / ") : "Jornada actual";
+      byId("statMatches").textContent = roundStats.rows.length;
+      byId("statMatchesLabel").textContent = "Partidos en juego";
+      byId("statDone").textContent = roundStats.loaded;
+      byId("statDoneLabel").textContent = "Marcadores cargados";
       byId("roleLine").textContent = session.authenticated ? (session.admin ? "Admin activo" : `Jugador - ${session.user}`) : "";
       byId("sessionSummary").textContent = session.authenticated ? (session.admin ? "Admin activo" : session.user) : "";
       byId("sessionPanel").open = !session.authenticated ? true : byId("sessionPanel").open;
@@ -1051,12 +1431,28 @@
     function fillSelects() {
       const previousReceptionRound = byId("receptionRound").value;
       const previousAuditRound = byId("auditRound").value;
-      const rounds = ["all", ...new Set(matches.map(m => String(m.round)))];
+      const previousStandingsRound = byId("standingsRound").value;
+      const previousChampionship = byId("newMatchGroup").value;
+      const previousHome = byId("newMatchHome").value;
+      const previousAway = byId("newMatchAway").value;
+      byId("newMatchGroup").innerHTML = Object.keys(championshipTeams).map(name => `<option value="${name}">${name}</option>`).join("");
+      if (championshipTeams[previousChampionship]) byId("newMatchGroup").value = previousChampionship;
+      const selectedChampionship = byId("newMatchGroup").value || Object.keys(championshipTeams)[0];
+      const teams = championshipTeams[selectedChampionship] || [];
+      const teamHtml = `<option value="">Selecciona equipo</option>` + teams.map(team => `<option value="${team}">${team}</option>`).join("");
+      ["newMatchHome","newMatchAway"].forEach(id => byId(id).innerHTML = teamHtml);
+      if (teams.includes(previousHome)) byId("newMatchHome").value = previousHome;
+      if (teams.includes(previousAway)) byId("newMatchAway").value = previousAway;
+      renderNewMatchTeamPreviews();
+      const actualRounds = [...new Set(matches.map(m => String(m.round)))];
+      const rounds = ["all", ...actualRounds];
       const roundHtml = rounds.map(r => `<option value="${r}">${roundLabel(r)}</option>`).join("");
-      const receptionRoundHtml = rounds.filter(r => r !== "all").map(r => `<option value="${r}">${roundLabel(r)}</option>`).join("");
+      const receptionRoundHtml = actualRounds.map(r => `<option value="${r}">${roundLabel(r)}</option>`).join("");
       ["roundFilter","adminRoundFilter"].forEach(id => byId(id).innerHTML = roundHtml);
-      byId("receptionRound").innerHTML = receptionRoundHtml;
-      if (rounds.includes(previousReceptionRound)) byId("receptionRound").value = previousReceptionRound;
+      byId("standingsRound").innerHTML = actualRounds.length ? actualRounds.map(r => `<option value="${r}">${roundLabel(r)}</option>`).join("") : `<option value="">Sin jornadas creadas</option>`;
+      byId("receptionRound").innerHTML = receptionRoundHtml || `<option value="">Sin jornadas creadas</option>`;
+      if (actualRounds.includes(previousStandingsRound)) byId("standingsRound").value = previousStandingsRound;
+      if (actualRounds.includes(previousReceptionRound)) byId("receptionRound").value = previousReceptionRound;
       const auditRounds = visibleAuditRounds();
       byId("auditRound").innerHTML = auditRounds.length ? auditRounds.map(r => `<option value="${r}">${roundLabel(r)}</option>`).join("") : `<option value="">Sin jornadas publicadas</option>`;
       if (auditRounds.includes(previousAuditRound)) byId("auditRound").value = previousAuditRound;
@@ -1065,7 +1461,7 @@
       const html = `<option value="">Selecciona usuario</option>` + state.users.map(u => `<option value="${u}">${u}</option>`).join("") + `<option value="Administrador">Administrador</option>`;
       const previousPredictionUser = byId("predictionUser").value;
       byId("userSelect").innerHTML = html;
-      byId("predictionUser").innerHTML = state.users.map(u => `<option value="${u}">${u}</option>`).join("");
+      byId("predictionUser").innerHTML = state.users.length ? state.users.map(u => `<option value="${u}">${u}</option>`).join("") : `<option value="">Sin participantes</option>`;
       byId("historyUser").innerHTML = session.authenticated && !session.admin
         ? `<option value="${session.user}">${session.user}</option>`
         : state.users.map(u => `<option value="${u}">${u}</option>`).join("");
@@ -1073,7 +1469,7 @@
       if (session.user) {
         byId("userSelect").value = session.admin ? "Administrador" : session.user;
         byId("historyUser").value = session.user;
-        byId("predictionUser").value = state.users.includes(previousPredictionUser) ? previousPredictionUser : session.user;
+        byId("predictionUser").value = state.users.includes(previousPredictionUser) ? previousPredictionUser : (state.users.includes(session.user) ? session.user : "");
       }
     }
     function renderAll() {
@@ -1263,17 +1659,18 @@
     });
     byId("addMatch").addEventListener("click", () => {
       if (!session.admin) return toast("Debes entrar como administrador");
-      const group = byId("newMatchGroup").value.trim().toUpperCase();
+      const group = byId("newMatchGroup").value.trim();
       const round = Number(byId("newMatchRound").value);
       const date = byId("newMatchDate").value;
       const time = byId("newMatchTime").value;
       const home = byId("newMatchHome").value.trim();
       const away = byId("newMatchAway").value.trim();
-      if (!group || !round || !date || !time || !home || !away) return toast("Completa grupo, jornada, fecha, hora y equipos");
+      if (!group || !round || !date || !time || !home || !away) return toast("Completa campeonato, jornada, fecha, hora y equipos");
       const match = { id: `custom-${Date.now()}`, group, round, date, time, home, away, custom: true };
       state.customMatches.push(match);
       matches = buildMatches();
-      ["newMatchGroup","newMatchRound","newMatchDate","newMatchTime","newMatchHome","newMatchAway"].forEach(id => byId(id).value = "");
+      ["newMatchRound","newMatchDate","newMatchTime","newMatchHome","newMatchAway"].forEach(id => byId(id).value = "");
+      renderNewMatchTeamPreviews();
       persist();
       fillSelects();
       renderAll();
@@ -1307,7 +1704,7 @@
       state.users = state.users.filter(u => u !== user);
       delete state.predictions[user];
       delete state.passwords[user];
-      if (session.user === user) session.user = state.users[0] || "Jugador 01";
+      if (session.user === user) session.user = state.users[0] || null;
       persist();
       renderAll();
     });
@@ -1348,11 +1745,14 @@
       fillSelects();
       renderAll();
     });
-    byId("roundFilter").addEventListener("input", renderMatches);
+    byId("roundFilter").addEventListener("input", () => { renderMatches(); renderStats(); });
     byId("predictionUser").addEventListener("change", renderMatches);
-    ["adminRoundFilter","adminSearch"].forEach(id => byId(id).addEventListener("input", renderAdminMatches));
+    ["adminRoundFilter","adminSearch"].forEach(id => byId(id).addEventListener("input", () => { renderAdminMatches(); renderStats(); }));
     byId("historyUser").addEventListener("change", renderHistory);
-    ["auditRound","auditSearch"].forEach(id => byId(id).addEventListener("input", renderPredictionAudit));
+    byId("newMatchGroup").addEventListener("change", fillSelects);
+    ["newMatchHome","newMatchAway"].forEach(id => byId(id).addEventListener("change", renderNewMatchTeamPreviews));
+    byId("standingsRound").addEventListener("input", () => { renderStandings(); renderStats(); });
+    ["auditRound","auditSearch"].forEach(id => byId(id).addEventListener("input", () => { renderPredictionAudit(); renderStats(); }));
     byId("downloadAudit").addEventListener("click", downloadAuditCsv);
     setInterval(() => {
       byId("colombiaTime").textContent = new Intl.DateTimeFormat("es-CO", { timeZone: "America/Bogota", hour: "2-digit", minute: "2-digit", second: "2-digit" }).format(new Date());
@@ -1366,3 +1766,8 @@
   </script>
 </body>
 </html>
+
+
+
+
+
