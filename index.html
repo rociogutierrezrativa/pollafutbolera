@@ -1440,22 +1440,28 @@
     byId("savePredictions").addEventListener("click", async () => {
       if (!session.authenticated) return toast("Primero debes entrar con tu usuario");
       const targetUser = predictionTargetUser();
-      const attempted = {};
-      const deleteIds = new Set();
+      const predictionsToSave = {};
+      const predictionsToDelete = new Set();
       let invalid = 0;
       document.querySelectorAll('[data-score^="pred-home-"]').forEach(input => {
         const id = input.dataset.score.replace("pred-home-", "");
         const away = document.querySelector(`[data-score="pred-away-${id}"]`);
-        if (input.value === "" && away.value === "") {
-          const existingPrediction = state.predictions[targetUser]?.[id];
-          if (session.admin && hasCompleteScore(existingPrediction)) deleteIds.add(id);
+        const homeValue = input.value.trim();
+        const awayValue = away.value.trim();
+        const existingPrediction = state.predictions[targetUser]?.[id];
+        if (homeValue === "" && awayValue === "") {
+          if (session.admin) predictionsToDelete.add(id);
           return;
         }
-        if (input.value === "" || away.value === "") {
+        if (homeValue === "" || awayValue === "") {
+          if (session.admin && hasCompleteScore(existingPrediction)) {
+            predictionsToDelete.add(id);
+            return;
+          }
           invalid += 1;
           return;
         }
-        attempted[id] = { home: Number(input.value), away: Number(away.value) };
+        predictionsToSave[id] = { home: Number(homeValue), away: Number(awayValue) };
       });
       if (invalid) return toast("Completa local y visitante antes de guardar");
       try {
@@ -1464,7 +1470,7 @@
         state.predictions[targetUser] ||= {};
         const target = state.predictions[targetUser];
         let blocked = 0;
-        deleteIds.forEach(id => {
+        predictionsToDelete.forEach(id => {
           const finalResult = state.results[id];
           if (!session.admin || hasCompleteScore(finalResult)) {
             blocked += 1;
@@ -1472,7 +1478,7 @@
           }
           delete target[id];
         });
-        Object.entries(attempted).forEach(([id, score]) => {
+        Object.entries(predictionsToSave).forEach(([id, score]) => {
           const match = matches.find(m => m.id === id);
           const currentPrediction = target[id];
           const finalResult = state.results[id];
@@ -1507,11 +1513,16 @@
           const away = document.querySelector(`[data-score="result-away-${id}"]`);
           const homeValue = input.value.trim();
           const awayValue = away.value.trim();
+          const existingResult = state.results[id];
           if (homeValue === "" && awayValue === "") {
             resultsToDelete.add(id);
             return;
           }
           if (homeValue === "" || awayValue === "") {
+            if (hasCompleteScore(existingResult)) {
+              resultsToDelete.add(id);
+              return;
+            }
             partial += 1;
             return;
           }
